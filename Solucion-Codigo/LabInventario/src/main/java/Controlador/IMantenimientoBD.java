@@ -8,6 +8,9 @@ package Controlador;
  *
  * @author ASUS
  */
-public class IMantenimientoBD {
-    
+public interface IMantenimientoBD {
+    /**
+     * Registra un nuevo historial de mantenimiento en la base de datos.
+     */
+    void registrar(String codigoActivo, String fecha, String tipo, double costo, String tecnico);
 }
