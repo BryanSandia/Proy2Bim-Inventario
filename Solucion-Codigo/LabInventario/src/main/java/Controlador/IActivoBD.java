@@ -4,10 +4,18 @@
  */
 package Controlador;
 
-/**
- *
- * @author ASUS
- */
-public class IActivoBD {
-    
+import Modelo.Activo;
+import java.util.List;
+
+public interface IActivoBD {
+
+    void crear(Activo activo);
+
+    Activo buscarPorCodigo(String codigo);
+
+    List<Activo> listarTodos();
+
+    void actualizar(Activo activo);
+
+    void eliminar(String codigo);
 }
