@@ -1,33 +1,36 @@
 package Controlador.Calculadora;
-import java.time.LocalDate;
+import java.util.List;
 
-import Modelo.Activo;
 import Modelo.Hardware;
-
-/**
- *
- * @author gemzie
- */
-public class CalculadoraHardware implements ICalculadoraMantenimiento{
-
+import Modelo.Mantenimiento;
+public class CalculadoraHardware implements ICalculadoraHardware {
 
     @Override
-    public double calcular(Activo activo) {
-        if (!(activo instanceof Hardware)){
-        throw new IllegalArgumentException("Esta calculadora solo funciona con Hardware");
+    public double calcular(Hardware hw) {
+        // 1. Obtener el costo base dinámico (Último mant. o Adquisición)
+        double costoBase = obtenerCostoBase(hw);
+        // 2. calcular el costo
+        return costoBase * 0.08; // 8% del precio base
+    }
+
+ 
+    /**
+     * Determina el costo base según el historial.
+     * Si hay mantenimientos previos, usa el costo del último.
+     * Si es nuevo, usa el costo de adquisición original.
+     */
+    private double obtenerCostoBase(Hardware hw) {
+        List<Mantenimiento> historial = hw.getMantenimiento();
+        
+        if (historial != null && !historial.isEmpty()) {
+            // Retorna el costo del ÚLTIMO mantenimiento registrado
+            Mantenimiento ultimo = historial.get(historial.size() - 1);
+            return ultimo.getCosto();
         }
-
-        Hardware hw = (Hardware) activo;
-        int anios = LocalDate.now().getYear() - hw.getFechaAdquisicion().getYear(); //Obtener anios en uso
-        double costoMantenimiento = hw.getCostoAdquisicion() * 1.2 * (1 + anios * 0.1); //calcula la renovacion con formula, CostoAdquisicion * 1,2 * (1 + anios * 0.1)
-        return costoMantenimiento;
+        
+        // Si nunca se ha mantenido, retorna el precio de compra
+        return hw.getCostoAdquisicion();
     }
 
 
-    @Override
-    public int obtenerFrecuenciaMeses(Activo activo) {
-        return 6; //Mantenimiento cada 6 meses para Hw
-    }
-
-    
 }

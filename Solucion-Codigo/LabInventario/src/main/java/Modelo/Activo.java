@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
 // === Clase abstracta que representa un activo de laboratorio === //
@@ -16,11 +12,12 @@ public abstract class Activo {
     protected LocalDate fechaAdquisicion;
 
     // Seguimiento
-    protected LocalDate fechaUltimoMantenimiento;
-    protected LocalDate fechaProximoMantenimiento;
-    protected double costoAcumuladoMantenimiento;
-    protected int cantidadMantenimientos;
-    protected String estado;
+    protected String estado; 
+    
+
+    public Activo() {
+    }
+
 
     public Activo(String codigo, String nombre, String descripcion,
             double costoAdquisicion, LocalDate fechaAdquisicion) {
@@ -30,14 +27,12 @@ public abstract class Activo {
         this.costoAdquisicion = costoAdquisicion;
         this.fechaAdquisicion = fechaAdquisicion;
         this.estado = "DISPONIBLE"; // DISPONBLE, EN MANTENIMIENTO, DE BAJA
-        this.costoAcumuladoMantenimiento = 0.0;
-        this.cantidadMantenimientos = 0;
     }
 
-    // ÚNICO método abstracto: Para identificar el tipo en el Controlador
+
+    //método abstracto: Para identificar el tipo en el Controlador
     public abstract String getTipoActivo();
 
-    // Getters y Setters (Puros, sin lógica)
     public String getCodigo() {
         return codigo;
     }
@@ -84,38 +79,6 @@ public abstract class Activo {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public LocalDate getFechaUltimoMantenimiento() {
-        return fechaUltimoMantenimiento;
-    }
-
-    public void setFechaUltimoMantenimiento(LocalDate fecha) {
-        this.fechaUltimoMantenimiento = fecha;
-    }
-
-    public LocalDate getFechaProximoMantenimiento() {
-        return fechaProximoMantenimiento;
-    }
-
-    public void setFechaProximoMantenimiento(LocalDate fecha) {
-        this.fechaProximoMantenimiento = fecha;
-    }
-
-    public double getCostoAcumuladoMantenimiento() {
-        return costoAcumuladoMantenimiento;
-    }
-
-    public void setCostoAcumuladoMantenimiento(double costo) {
-        this.costoAcumuladoMantenimiento = costo;
-    }
-
-    public int getCantidadMantenimientos() {
-        return cantidadMantenimientos;
-    }
-
-    public void setCantidadMantenimientos(int cantidad) {
-        this.cantidadMantenimientos = cantidad;
     }
 
     @Override
