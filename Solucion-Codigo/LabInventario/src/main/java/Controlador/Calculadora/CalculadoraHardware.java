@@ -3,9 +3,9 @@ import java.util.List;
 
 import Modelo.Hardware;
 import Modelo.Mantenimiento;
-public class CalculadoraHardware implements ICalculadoraHardware {
+public class CalculadoraHardware{
 
-    @Override
+
     public double calcular(Hardware hw) {
         // 1. Obtener el costo base dinámico (Último mant. o Adquisición)
         double costoBase = obtenerCostoBase(hw);
