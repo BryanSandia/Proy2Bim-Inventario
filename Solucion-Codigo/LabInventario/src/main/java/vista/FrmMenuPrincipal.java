@@ -114,9 +114,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private void btnMantenimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenimientosActionPerformed
         Modelo.Persona usuarioLogueado = obtenerUsuarioSimulado();
 
-        // FrmMantenimiento ventanaMantenimiento = new FrmMantenimiento(usuarioLogueado);
-        // ventanaMantenimiento.setVisible(true);
-        // this.dispose();
+        FrmMantenimiento ventanaMantenimiento = new FrmMantenimiento(usuarioLogueado);
+        ventanaMantenimiento.setVisible(true);
+        this.dispose();
         javax.swing.JOptionPane.showMessageDialog(this, "Abriendo Mantenimientos para: " + usuarioLogueado.getNivelAcceso());
     }//GEN-LAST:event_btnMantenimientosActionPerformed
 
@@ -129,9 +129,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         Modelo.Persona usuarioLogueado = obtenerUsuarioSimulado();
 
         // 2. Aquí abriremos la siguiente ventana pasándole el usuario (aún no la creamos, por eso está comentado)
-        // FrmGestionActivos ventanaGestion = new FrmGestionActivos(usuarioLogueado);
-        // ventanaGestion.setVisible(true);
-        // this.dispose(); // Opcional: cierra el menú principal
+        FrmGestionActivos ventanaGestion = new FrmGestionActivos(usuarioLogueado);
+        ventanaGestion.setVisible(true);
+        this.dispose(); // Opcional: cierra el menú principal
         javax.swing.JOptionPane.showMessageDialog(this, "Abriendo Gestión para: " + usuarioLogueado.getNombre() + " (" + usuarioLogueado.getNivelAcceso() + ")");
     }//GEN-LAST:event_btnGestionActivosActionPerformed
 
